@@ -1,41 +1,56 @@
+<div align="center">
+
 # Frontmost Copilot
 
-Read the frontmost app’s selected text, send it to an OpenAI-compatible API, and insert or copy the reply.
+**An AI overlay copilot that follows the active macOS app.**  
+macOS menu extra — lives in the menu bar, no Dock icon.
 
-Menu extra for macOS 14+. It lives in the menu bar and does not show a Dock icon.
+<br/>
 
-## Features
+[![Latest Release](https://img.shields.io/github/v/release/BadryansahBangsawan/frontmost-copilot?style=flat-square&color=76B900&label=latest)](https://github.com/BadryansahBangsawan/frontmost-copilot/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-14%2B-black?style=flat-square&logo=apple)](https://github.com/BadryansahBangsawan/frontmost-copilot/releases/latest)
+[![Swift](https://img.shields.io/badge/Swift-5.9%2B-F05138?style=flat-square&logo=swift&logoColor=white)](https://swift.org)
 
-- Floating overlay and menu-bar panel.
-- Reads app name, document path, and selected text via Accessibility.
-- Prompts: Explain, Refactor, Tests, Commit.
-- Global hotkey (default ⌘⌥Space) to show the overlay.
-- API key stored in Keychain (`engineer.badry.frontmostcopilot` / `api-key`), never UserDefaults.
-- Configurable base URL (default `https://api.openai.com/v1`) and model (default `gpt-4o-mini`).
+<br/>
 
-## Requirements
+</div>
 
-- macOS 14 Sonoma or later
-- Swift 5.9 or later
-- Accessibility to read selection and insert text
-- An API key for an OpenAI-compatible chat endpoint
+---
 
-## Install
+## Download
 
-Homebrew (macOS 14+):
+| Platform | File |
+|---|---|
+| **macOS** (Apple Silicon & Intel, macOS 14+) | `FrontmostCopilot-*-macos.zip` |
+
+[Go to Releases](https://github.com/BadryansahBangsawan/frontmost-copilot/releases/latest)
+
+---
+
+## Installation
+
+### Homebrew (recommended)
 
 ```bash
 brew tap BadryansahBangsawan/mac-menu-apps
 brew install --cask frontmost-copilot
 ```
 
-Opens as a menu extra (no Dock icon). The cask is ad-hoc signed. If Gatekeeper blocks it:
+A **Frontmost Copilot** icon appears in the menu bar. If Gatekeeper blocks it on first launch:
 
 ```bash
-xattr -cr /Applications/FrontmostCopilot.app
+xattr -cr /Applications/FrontmostCopilot.app && open /Applications/FrontmostCopilot.app
 ```
 
-Build from source:
+Or: right-click the app, Open, then Open again. Still blocked? **System Settings → Privacy & Security → Open Anyway**.
+
+### GitHub Releases
+
+1. Download `FrontmostCopilot-*-macos.zip` from [Releases](https://github.com/BadryansahBangsawan/frontmost-copilot/releases/latest)
+2. Unzip and drag **FrontmostCopilot** into Applications
+3. On first launch, run the xattr command above if Gatekeeper blocks it
+
+### Build from source
 
 ```bash
 git clone https://github.com/BadryansahBangsawan/frontmost-copilot.git
@@ -44,42 +59,27 @@ bash package-app.sh
 open dist/FrontmostCopilot.app
 ```
 
-Enable **Open at Login** from Settings if you want it after reboot.
+Requires Xcode Command Line Tools and Swift 5.9+.
 
-## Usage
+## Keyboard Shortcuts
 
-- Save an API key in Settings. Send stays disabled until a key exists (`Add an API key in Settings`).
-- Select text in another app, then **Send** or press the overlay hotkey.
-- **Show overlay** / **Hide overlay** from the menu extra. Default hotkey is ⌘⌥Space (change it in Settings).
-- History of replies is stored locally and can be cleared.
+| Shortcut | Action |
+|---|---|
+| `Control+Shift+Space` | Show / hide copilot panel |
 
-## Permissions
+---
 
-- **Accessibility** — required to read the focused element and to insert. Without it you get a CTA to open Accessibility Settings.
-- Network — only to the base URL you configure, when you press Send.
+## Notes
 
-Denied permissions must not crash the app. You should see a banner and a button to open System Settings.
+– Requires Accessibility permission to identify the frontmost app.
+– Panel stays on top of all windows.
+– No Dock icon; lives entirely in the menu bar.
 
-## Privacy
+---
 
-The API key never goes in UserDefaults or logs. Chat content is sent only to the configured endpoint when you send. No other telemetry.
+<div align="center">
 
-Bundle ID: `engineer.badry.frontmostcopilot`.
+Made with ♥ for developers who prefer staying in the flow.
 
-## Development
+</div>
 
-```bash
-swift build
-swift build -c release --product FrontmostCopilot
-```
-
-Layout: `Sources/` (SwiftPM executable), `Info.plist`, `Assets/AppIcon.icns`, `package-app.sh`.
-
-## Security
-
-Treat the Keychain item as a secret. Rotate the key if it leaks. Do not paste keys into issues or commit them.
-
-
-## License
-
-[MIT](LICENSE)
