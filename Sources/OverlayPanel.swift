@@ -88,7 +88,6 @@ final class OverlayPanelController: NSObject, NSWindowDelegate {
 struct OverlayHost: View {
     var body: some View {
         CopilotPanel(showsOverlayToggle: false)
-            .background(.regularMaterial)
             .funPanel()
     }
 }

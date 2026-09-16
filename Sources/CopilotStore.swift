@@ -71,9 +71,12 @@ final class CopilotStore: ObservableObject {
     }
 
     func requestAccessibility() {
-        _ = AXSupport.isTrusted(prompt: true)
         AXSupport.openAccessibilitySettings()
         accessibilityTrusted = AXSupport.isTrusted(prompt: false)
+    }
+
+    func relaunch() {
+        AXSupport.relaunch()
     }
 
     func copyContext() {

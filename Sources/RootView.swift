@@ -3,7 +3,6 @@ import SwiftUI
 struct RootView: View {
     var body: some View {
         CopilotPanel(showsOverlayToggle: true)
-            .background(.regularMaterial)
             .funPanel()
     }
 }
@@ -15,7 +14,7 @@ struct CopilotPanel: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: FunTheme.sectionSpacing) {
             header
             banners
             if !store.accessibilityTrusted {
@@ -26,6 +25,7 @@ struct CopilotPanel: View {
             actions
             responseSection
             historySection
+            ExtraSettingsFooter()
         }
         .animation(reduceMotion ? nil : FunTheme.spring, value: store.isSending)
         .animation(reduceMotion ? nil : FunTheme.spring, value: store.response)
@@ -79,12 +79,21 @@ struct CopilotPanel: View {
     }
 
     private var accessibilityCTA: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: FunTheme.innerSpacing) {
             Text("Accessibility is required to read the frontmost selection.")
-            Button("Open Accessibility Settings") {
-                store.requestAccessibility()
+            Text("If the switch is already on, turn it off and on, then Relaunch.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            HStack {
+                Button("Open Accessibility Settings") {
+                    store.requestAccessibility()
+                }
+                .buttonStyle(.borderedProminent)
+                Button("Relaunch") {
+                    store.relaunch()
+                }
             }
-            .buttonStyle(.borderedProminent)
         }
     }
 
@@ -112,8 +121,7 @@ struct CopilotPanel: View {
                     .font(.system(.caption, design: .monospaced))
                     .lineLimit(8)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(6)
-                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 6))
+                    .extraRowSurface()
             }
         }
     }
@@ -199,6 +207,7 @@ struct CopilotPanel: View {
                         }
                     }
                     .buttonStyle(.plain)
+                    .extraRowSurface()
                 }
             }
         }

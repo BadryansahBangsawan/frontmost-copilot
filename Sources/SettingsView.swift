@@ -75,10 +75,15 @@ struct SettingsView: View {
                     Text("Accessibility is allowed.")
                 } else {
                     Text("Accessibility is required to read selection and insert text.")
+                    Text("If the switch is already on, turn it off and on, then Relaunch.")
+                        .foregroundStyle(.secondary)
                     Button("Open Accessibility Settings") {
                         store.requestAccessibility()
                     }
                     .buttonStyle(.borderedProminent)
+                    Button("Relaunch") {
+                        store.relaunch()
+                    }
                 }
             }
 
