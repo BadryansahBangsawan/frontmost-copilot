@@ -87,6 +87,7 @@ Another app may have claimed the same shortcut. Check **System Settings → Keyb
 – Requires Accessibility permission to identify the frontmost app.
 – Panel stays on top of all windows.
 – No Dock icon; lives entirely in the menu bar.
+– Optional auto-start: **System Settings → General → Login Items** and add Frontmost Copilot (or enable Open at Login from the menu bar icon if offered).
 
 ---
 
