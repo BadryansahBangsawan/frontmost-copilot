@@ -69,6 +69,19 @@ Requires Xcode Command Line Tools and Swift 5.9+.
 
 ---
 
+## Troubleshooting
+
+**Panel does not follow the active app**  
+Grant Accessibility permission: **System Settings → Privacy & Security → Accessibility → enable Frontmost Copilot**, then relaunch the app. The permission prompt only appears once; if you dismissed it, add manually.
+
+**Panel appears behind full-screen windows**  
+macOS limits overlay positioning in full-screen Spaces. Switch the target app to a regular window (not full-screen) for the panel to dock correctly.
+
+**Hotkey (`Control+Shift+Space`) not responding**  
+Another app may have claimed the same shortcut. Check **System Settings → Keyboard → Keyboard Shortcuts** for conflicts, or reassign the hotkey from the Frontmost Copilot menu bar icon.
+
+---
+
 ## Notes
 
 – Requires Accessibility permission to identify the frontmost app.
