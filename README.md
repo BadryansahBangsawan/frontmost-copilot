@@ -72,7 +72,7 @@ Requires Xcode Command Line Tools and Swift 5.9+.
 ## Troubleshooting
 
 **Panel does not follow the active app**  
-Grant Accessibility permission: **System Settings → Privacy & Security → Accessibility → enable Frontmost Copilot**, then relaunch the app. The permission prompt only appears once; if you dismissed it, add manually.
+Grant Accessibility permission: **System Settings → Privacy & Security → Accessibility → enable Frontmost Copilot**, then relaunch the app. The permission prompt only appears once; if you dismissed it, add manually. After `brew reinstall --cask frontmost-copilot`, macOS treats the binary as new — toggle the Accessibility checkbox off and on, then relaunch.
 
 **Panel appears behind full-screen windows**  
 macOS limits overlay positioning in full-screen Spaces. Switch the target app to a regular window (not full-screen) for the panel to dock correctly.
